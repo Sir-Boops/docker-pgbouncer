@@ -8,15 +8,16 @@ RUN addgroup psql && \
 
 RUN apk add -U --virtual deps \
 		gcc g++ make libevent-dev \
-		libressl-dev && \
+		libressl-dev c-ares-dev udns-dev && \
 	cd ~ && \
 	wget https://pgbouncer.github.io/downloads/files/$PGB_VER/pgbouncer-$PGB_VER.tar.gz && \
 	tar xf pgbouncer-$PGB_VER.tar.gz && \
 	cd ~/pgbouncer-$PGB_VER/ && \
-	./configure --prefix=/opt/pgbouncer && \
+	./configure --prefix=/opt/pgbouncer \
+        --with-udns && \
 	make -j$(nproc) && \
 	make install && \
 	rm -rf ~/* && \
 	apk del --purge deps && \
-	apk add libevent && \
+	apk add libevent c-ares && \
 	mkdir /opt/pgbouncer/etc/
