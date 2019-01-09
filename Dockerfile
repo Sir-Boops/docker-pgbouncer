@@ -3,7 +3,7 @@ FROM alpine:3.8
 ENV PGB_VER="1.9.0"
 
 RUN addgroup psql && \
-    adduser -H -D -u 1000 -S -G psql psql && \
+    adduser -H -D -u 1000 -S -G psql psql
 
 RUN apk add -U --virtual deps \
         gcc g++ make libevent-dev \
