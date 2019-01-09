@@ -1,10 +1,9 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
-ENV PGB_VER="1.8.1"
+ENV PGB_VER="1.9.0"
 
 RUN addgroup psql && \
-    adduser -H -D -G psql psql && \
-    echo "psql:`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -m sha256`" | chpasswd
+    adduser -H -D -u 1000 -S -G psql psql && \
 
 RUN apk add -U --virtual deps \
         gcc g++ make libevent-dev \
