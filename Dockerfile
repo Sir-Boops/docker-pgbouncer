@@ -1,6 +1,6 @@
-FROM alpine:3.17.0
+FROM alpine:3.18.0
 
-ENV PGB_VER="1.18.0"
+ENV PGB_VER="1.19.0"
 
 RUN addgroup psql && \
     adduser -H -D -u 1000 -S -G psql psql
@@ -8,7 +8,7 @@ RUN addgroup psql && \
 RUN apk add -U --virtual deps \
         gcc g++ make libevent-dev \
         libressl-dev c-ares-dev udns-dev && \
-    apk add libevent c-ares libressl3.1-libssl && \
+    apk add libevent c-ares libressl3.7-libssl && \
     cd ~ && \
     wget https://pgbouncer.github.io/downloads/files/$PGB_VER/pgbouncer-$PGB_VER.tar.gz && \
     tar xf pgbouncer-$PGB_VER.tar.gz && \
