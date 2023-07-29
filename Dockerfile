@@ -1,6 +1,6 @@
 FROM alpine:3.18.2
 
-ENV PGB_VER="1.20"
+ENV PGB_VER="1.20.0"
 
 RUN addgroup psql && \
     adduser -H -D -u 1000 -S -G psql psql
